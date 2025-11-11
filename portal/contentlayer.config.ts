@@ -1,6 +1,7 @@
 import { defineDocumentType, makeSource } from 'contentlayer2/source-files';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeSlug from 'rehype-slug';
+import rehypeMermaid from 'rehype-mermaid';
 import remarkGfm from 'remark-gfm';
 
 export const Doc = defineDocumentType(() => ({
@@ -46,6 +47,10 @@ export default makeSource({
   documentTypes: [Doc],
   mdx: {
     remarkPlugins: [remarkGfm],
-    rehypePlugins: [rehypeSlug, rehypeHighlight],
+    rehypePlugins: [
+      rehypeSlug,
+      [rehypeMermaid, { strategy: 'inline-svg' }],
+      rehypeHighlight,
+    ],
   },
 });
