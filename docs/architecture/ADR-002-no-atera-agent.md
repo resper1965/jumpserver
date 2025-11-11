@@ -13,6 +13,9 @@
 > **Configuration Custody Notice**  
 > Ionic Health engineering exclusively manages all eKVM configuration, firmware, and software changes. LVHN operations is solely responsible for provisioning, hardening, and maintaining the Windows jumper server environment. Any activity outside these custody boundaries requires written approval from both teams.
 
+> **Network Visibility Scope**  
+> The decision scope excludes LVHN network internals beyond the jumper server, reflecting Ionic Healths limited operational footprint.
+
 ## Context and Problem Statement
 
 Current eKVM update process relies on Atera remote management agents. LVHN IT requires removal of Atera to reduce attack surface, eliminate third-party dependencies, and consolidate remote access methods. Alternative remote management approach must support firmware/software updates without installing new agents.

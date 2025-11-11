@@ -5,6 +5,9 @@ This directory contains Architecture Decision Records for the LVHN eKVM Remote U
 > **Configuration Custody Notice**  
 > Ionic Health engineering exclusively manages all eKVM configuration, firmware, and software changes. LVHN operations is solely responsible for provisioning, hardening, and maintaining the Windows jumper server environment. Any activity outside these custody boundaries requires written approval from both teams.
 
+> **Network Visibility Scope**  
+> ADRs document decisions only for assets up to the LVHN-managed jumper server; Ionic Health has no purview over other LVHN network segments.
+
 ## What is an ADR?
 
 An Architecture Decision Record (ADR) captures an important architectural decision made along with its context and consequences.

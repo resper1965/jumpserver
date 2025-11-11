@@ -9,6 +9,9 @@
 > **CRITICAL OWNERSHIP NOTICE**  
 > Ionic Health engineering exclusively manages all eKVM configuration, firmware, and software changes. LVHN operations is solely responsible for provisioning, hardening, and maintaining the Windows jumper server environment. Any cross-domain activity requires written change approval from both parties.
 
+> **Network Visibility Scope**  
+> Ionic Health does not require insight into LVHN’s internal network topology beyond the managed jumper server and its outbound path to Ionic-owned eKVM devices (public IP over secured maintenance windows).
+
 ## 📋 Project Overview
 
 This repository contains the complete technical documentation, procedures, and architecture decisions for implementing secure remote updates of Ionic eKVM devices within the Lehigh Valley Health Network (LVHN) environment.

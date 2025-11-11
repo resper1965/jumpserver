@@ -485,3 +485,6 @@ I, [Name], [Title] at [LVHN/Ionic], attest that the security controls documented
 ---
 
 *End of Security Controls Matrix*
+
+> **Network Visibility Scope**  
+> Control implementation references only LVHN-managed components up to the jumper server boundary; Ionic Health does not require visibility into other LVHN network segments.

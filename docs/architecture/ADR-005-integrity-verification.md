@@ -13,6 +13,9 @@
 > **Configuration Custody Notice**  
 > Ionic Health engineering exclusively manages all eKVM configuration, firmware, and software changes. LVHN operations is solely responsible for provisioning, hardening, and maintaining the Windows jumper server environment. Any activity outside these custody boundaries requires written approval from both teams.
 
+> **Network Visibility Scope**  
+> Integrity controls apply strictly to transfers initiated from the LVHN jumper server toward Ionic eKVM devices; Ionic Health does not assess other LVHN networks.
+
 ## Context and Problem Statement
 
 Update binaries transferred across multiple hops (Ionic CDN → jumper → eKVM) must be verified for integrity and authenticity. Compromised or corrupted binaries pose critical risks in healthcare environments (patient safety, HIPAA violations, device malfunction). A cryptographic hash verification method is required that is audit-ready, scriptable, and resistant to collision attacks.

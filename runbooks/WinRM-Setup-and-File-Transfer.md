@@ -9,6 +9,9 @@
 > **Configuration Custody Notice**  
 > Ionic Health engineering exclusively manages all eKVM configuration, firmware, and software changes, including patching operations executed through the jumper server. LVHN operations is solely responsible for provisioning, hardening, and maintaining the Windows jumper server environment per the documented requirements.
 
+> **Network Visibility Scope**  
+> Procedures here cover only the LVHN jumper server endpoint; Ionic Health does not require access to other LVHN network assets.
+
 ## Overview
 
 Windows Remote Management (WinRM) is Microsoft's implementation of the WS-Management protocol, allowing remote management of Windows systems. This runbook covers:

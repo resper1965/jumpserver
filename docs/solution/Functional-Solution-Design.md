@@ -3,6 +3,9 @@
 > **Configuration Custody Notice**  
 > Ionic Health engineering exclusively manages all eKVM configuration, firmware, and software changes, including patching operations executed via the jumper server. LVHN operations is solely responsible for provisioning, hardening, and maintaining the Windows jumper server in line with the requirements defined in this specification. Any cross-domain action demands documented approval from both organizations.
 
+> **Network Visibility Scope**  
+> Ionic Health does not require visibility into LVHN s broader network, only assurance that the LVHN-managed jumper server can reach Ionic-managed eKVM devices via the agreed outbound path.
+
 ## 1. Purpose
 
 This document describes the functional architecture of the LVHN eKVM Remote Update solution, clarifying system responsibilities, data flows, and operational safeguards needed to deliver compliant patching operations through the Windows jumper server managed by LVHN.
