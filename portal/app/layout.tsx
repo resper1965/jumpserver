@@ -24,9 +24,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 LVHN eKVM Remote Update Portal
               </h1>
             </div>
-            <span className="rounded-full border border-primary-500 px-4 py-1 text-xs uppercase tracking-wide text-primary-400">
-              Powered by Pinexio Template
-            </span>
           </header>
           <main className="flex-1 py-10">{children}</main>
           <footer className="border-t border-slate-800 pt-6 text-sm text-slate-500">
