@@ -1,11 +1,14 @@
 import { SignJWT, jwtVerify } from 'jose';
 import bcrypt from 'bcryptjs';
-import { authorizedUsers, JWT_SECRET, SESSION_CONFIG, type User } from '../../auth.config';
+import { JWT_SECRET, SESSION_CONFIG, type User } from '../../auth.config';
+import { getUserByUsernameOrEmail, updateLastLogin } from './users';
 
 const secret = new TextEncoder().encode(JWT_SECRET);
 
 export interface SessionPayload {
+  id: string;
   username: string;
+  email: string;
   name: string;
   role: string;
   exp: number;
@@ -15,10 +18,10 @@ export interface SessionPayload {
  * Verify user credentials
  */
 export async function verifyCredentials(
-  username: string,
+  usernameOrEmail: string,
   password: string
 ): Promise<User | null> {
-  const user = authorizedUsers.find((u) => u.username === username);
+  const user = await getUserByUsernameOrEmail(usernameOrEmail);
 
   if (!user) {
     return null;
@@ -30,6 +33,9 @@ export async function verifyCredentials(
     return null;
   }
 
+  // Update last login
+  await updateLastLogin(user.id);
+
   return user;
 }
 
@@ -38,7 +44,9 @@ export async function verifyCredentials(
  */
 export async function createSession(user: User): Promise<string> {
   const payload: SessionPayload = {
+    id: user.id,
     username: user.username,
+    email: user.email,
     name: user.name,
     role: user.role,
     exp: Math.floor(Date.now() / 1000) + SESSION_CONFIG.maxAge,
@@ -85,7 +93,7 @@ export function getSessionFromCookie(cookieValue: string | undefined): string | 
  * Check if a route requires authentication
  */
 export function isProtectedRoute(pathname: string): boolean {
-  const protectedPaths = ['/docs', '/questionnaire'];
+  const protectedPaths = ['/docs', '/questionnaire', '/admin'];
   return protectedPaths.some((path) => pathname.startsWith(path));
 }
 
@@ -95,4 +103,11 @@ export function isProtectedRoute(pathname: string): boolean {
 export function isPublicRoute(pathname: string): boolean {
   const publicPaths = ['/', '/api/auth/login', '/api/auth/logout', '/login'];
   return publicPaths.some((path) => pathname === path || pathname.startsWith('/login'));
+}
+
+/**
+ * Check if user is admin
+ */
+export function isAdmin(session: SessionPayload | null): boolean {
+  return session?.role === 'admin';
 }

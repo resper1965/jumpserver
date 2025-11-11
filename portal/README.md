@@ -1,12 +1,12 @@
-# LVHN Documentation Portal - Pinexio Implementation
+# LVHN Documentation Portal
 
-Complete documentation portal built with Next.js 15, React 19, and the Pinexio template structure.
+Complete documentation portal built with Next.js 15, React 19, and modern React patterns.
 
 ## Features
 
 ### ✅ Implemented
 
-- **Pinexio Sidebar**
+- **Sidebar Navigation**
   - Responsive design (mobile overlay, desktop sticky)
   - Collapsible navigation sections
   - Active route detection

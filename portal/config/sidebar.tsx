@@ -7,6 +7,7 @@ import {
   FileCheck,
   Network,
   ClipboardList,
+  UserCog,
 } from 'lucide-react';
 
 export const sidebarNav = [
@@ -61,5 +62,12 @@ export const sidebarNav = [
     pages: [
       { title: 'Questionnaire Form', href: '/questionnaire' },
     ],
+  },
+  {
+    title: 'Administration',
+    icon: <UserCog className="h-5 w-5" />,
+    href: '/admin/users',
+    defaultOpen: false,
+    adminOnly: true,
   },
 ];

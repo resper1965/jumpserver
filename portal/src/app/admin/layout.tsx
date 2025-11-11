@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { sidebarNav } from '../../../config/sidebar';
 import {
   SidebarProvider,
   SidebarLayout,
@@ -15,47 +15,61 @@ import {
   SidebarTrigger,
   SidebarHeaderLogo,
   SidebarHeaderTitle,
-  UserAvatar,
-  NestedLink,
 } from '@/components/sidebar';
-import { Github } from 'lucide-react';
+import { Shield, Users, Settings } from 'lucide-react';
 import Header from '@/components/header';
 import { ModeToggle } from '@/components/mode-toggle';
-import { Button } from '@/components/button';
-import { useIsMobile } from '@/hooks/use-mobile';
-import { SearchDialog } from '@/components/search-dialog';
 import { LogoutButton } from '@/components/logout-button';
 import { UserInfo } from '@/components/user-info';
+import { useIsMobile } from '@/hooks/use-mobile';
 
-export default function DocsLayout({
+interface UserInfo {
+  id: string;
+  username: string;
+  email: string;
+  name: string;
+  role: string;
+}
+
+export default function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const isMobile = useIsMobile();
-  const [userRole, setUserRole] = React.useState<string | null>(null);
+  const router = useRouter();
+  const [user, setUser] = React.useState<UserInfo | null>(null);
+  const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
+    // Check if user is admin
     fetch('/api/auth/me')
       .then((res) => res.json())
       .then((data) => {
-        if (data.user) {
-          setUserRole(data.user.role);
+        if (!data.user || data.user.role !== 'admin') {
+          router.push('/docs');
+        } else {
+          setUser(data.user);
         }
+        setLoading(false);
       })
       .catch(() => {
-        setUserRole(null);
+        router.push('/login');
+        setLoading(false);
       });
-  }, []);
+  }, [router]);
 
-  const filteredSidebarNav = React.useMemo(() => {
-    return sidebarNav.filter((section: any) => {
-      if (section.adminOnly) {
-        return userRole === 'admin';
-      }
-      return true;
-    });
-  }, [userRole]);
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-pulse text-muted-foreground">Loading...</div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return null;
+  }
 
   return (
     <SidebarLayout>
@@ -70,37 +84,30 @@ export default function DocsLayout({
             <SidebarHeaderLogo
               logo={
                 <div className="h-10 w-10 rounded-lg bg-primary text-primary-foreground flex items-center justify-center font-bold">
-                  IH
+                  <Shield className="h-6 w-6" />
                 </div>
               }
             />
-            <Link href={'/'} className="flex flex-1 gap-3">
+            <Link href={'/admin'} className="flex flex-1 gap-3">
               <SidebarHeaderTitle>
-                LVHN Portal
+                Admin Panel
               </SidebarHeaderTitle>
             </Link>
           </SidebarHeader>
 
           <SidebarContent>
-            <div className="mb-4">
-              <SearchDialog />
-            </div>
-            {filteredSidebarNav.map((section: any) => (
-              <SidebarMenuItem
-                isCollapsable={section.pages && section.pages.length > 0}
-                key={section.title}
-                label={section.title}
-                href={section.href}
-                icon={section.icon}
-                defaultOpen={section.defaultOpen}
-              >
-                {section.pages?.map((page: any) => (
-                  <NestedLink key={page.href} href={page.href}>
-                    {page.title}
-                  </NestedLink>
-                ))}
-              </SidebarMenuItem>
-            ))}
+            <SidebarMenuItem
+              isCollapsable={false}
+              label="User Management"
+              href="/admin/users"
+              icon={<Users className="h-5 w-5" />}
+            />
+            <SidebarMenuItem
+              isCollapsable={false}
+              label="Back to Docs"
+              href="/docs"
+              icon={<Settings className="h-5 w-5" />}
+            />
           </SidebarContent>
 
           <SidebarFooter>
@@ -112,13 +119,10 @@ export default function DocsLayout({
           <Header className="justify-between py-2">
             <div className="flex items-center gap-4">
               <SidebarTrigger />
-              <h1 className="text-xl font-bold">LVHN eKVM Documentation</h1>
+              <h1 className="text-xl font-bold">Admin Panel</h1>
             </div>
             <div className="flex gap-2 items-center pr-0 lg:pr-8">
               <ModeToggle />
-              <Button onClick={() => window.open('https://github.com/resper1965/jumpserver', '_blank')}>
-                <Github className="h-[1.2rem] w-[1.2rem] transition-all" />
-              </Button>
               <LogoutButton />
             </div>
           </Header>

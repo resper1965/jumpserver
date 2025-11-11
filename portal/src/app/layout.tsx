@@ -10,7 +10,7 @@ const montserrat = Montserrat({ subsets: ['latin'], weight: ['500', '600'], disp
 export const metadata: Metadata = {
   title: 'Ionic Health – LVHN Documentation Portal',
   description:
-    'Centralized documentation for the LVHN jumper server engagement, built using the Pinexio template.'
+    'Centralized documentation for the LVHN jumper server engagement with Next.js 15 and React 19.'
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

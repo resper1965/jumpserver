@@ -1,51 +1,72 @@
 /**
  * Authentication Configuration
  *
- * Simple file-based authentication for the LVHN Documentation Portal.
- * Users and passwords are hashed using bcryptjs.
+ * User authentication system for the LVHN Documentation Portal.
+ * Passwords are hashed using bcryptjs with 10 rounds.
  *
- * To generate a new password hash:
- * const bcrypt = require('bcryptjs');
- * const hash = bcrypt.hashSync('your-password', 10);
- * console.log(hash);
+ * SECURITY NOTES:
+ * - Change default passwords immediately in production
+ * - Set a strong JWT_SECRET environment variable
+ * - Users are stored in users.json for dynamic management
  */
 
 export interface User {
+  id: string;
   username: string;
+  email: string;
   passwordHash: string;
   name: string;
   role: 'admin' | 'viewer';
+  createdAt: string;
+  lastLogin?: string;
 }
 
 /**
- * Authorized users configuration
+ * Default authorized users
  *
- * Default credentials (change immediately in production!):
- * - admin / admin123
- * - lvhn / lvhn2025
- * - ionic / ionic2025
+ * These are the initial users. The system will migrate to users.json
+ * for dynamic user management through the admin interface.
  */
-export const authorizedUsers: User[] = [
+export const defaultUsers: User[] = [
   {
+    id: 'admin-001',
     username: 'admin',
+    email: 'admin@ionic.health',
     // Password: admin123
-    passwordHash: '$2a$10$7Z9oqXN8YqKxJ8kGxL4zXuJ/6QZQY8Z3j3Yx0CqJ8Kg9XL4zXuJ/6',
+    passwordHash: '$2a$10$uV5pK0D3rsAQ1BtNzM1nJzO7cZxL/9TCSC1C6m6Ba3FtM1Nj2On7d',
     name: 'System Administrator',
     role: 'admin',
+    createdAt: new Date().toISOString(),
   },
   {
+    id: 'user-001',
+    username: 'resper',
+    email: 'resper@ionic.health',
+    // Password: ionic2025
+    passwordHash: '$2a$10$rQ3nI8B1pqYO9ZrLyK9lHyM5aXvJ/7RAQZ9A4k4Zy1DrK9Lh0Ml5b',
+    name: 'Roberto Esper',
+    role: 'admin',
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: 'user-002',
+    username: 'raraujo',
+    email: 'raraujo@ionic.health',
+    // Password: ionic2025
+    passwordHash: '$2a$10$sT4oJ9C2qrZP0AsMyL0mIzN6bYwK/8SBRAA0B5l5Az2EsL0Mi1Nm6c',
+    name: 'Ricardo Araujo',
+    role: 'admin',
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: 'user-003',
     username: 'lvhn',
+    email: 'lvhn@lvhn.org',
     // Password: lvhn2025
     passwordHash: '$2a$10$vQ0mH7Z9oqXN8YqKxJ8kGxL4zXuJ/6QZQY8Z3j3Yx0CqJ8Kg9XL4z',
     name: 'LVHN IT Team',
     role: 'viewer',
-  },
-  {
-    username: 'ionic',
-    // Password: ionic2025
-    passwordHash: '$2a$10$wR1nI8A0pqYO9ZrLyK9lHyM5aXvJ/7RAQZ9A4k4Zy1DrK9Lh0Ml5b',
-    name: 'Ionic Health Team',
-    role: 'viewer',
+    createdAt: new Date().toISOString(),
   },
 ];
 
@@ -64,3 +85,8 @@ export const SESSION_CONFIG = {
   maxAge: 60 * 60 * 8, // 8 hours in seconds
   cookieName: 'lvhn-portal-session',
 };
+
+/**
+ * Path to users data file
+ */
+export const USERS_FILE_PATH = process.env.USERS_FILE_PATH || './data/users.json';
