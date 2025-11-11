@@ -40,6 +40,35 @@ This document defines the complete Microsoft Windows-based technology stack for 
 
 ---
 
+### 1.1 Critical Infrastructure Ownership
+
+> **🔴 IMPORTANT: Infrastructure Components are LVHN Responsibility**
+>
+> This document provides **RECOMMENDATIONS ONLY** for the following components. Final technology selection, procurement, configuration, and maintenance are **LVHN's sole responsibility**:
+>
+> - **SSL VPN Solution** (e.g., Palo Alto, Cisco, Fortinet) – LVHN selects and manages
+> - **Privileged Access Management (PAM)** (e.g., CyberArk, BeyondTrust) – LVHN selects and manages
+> - **SIEM Platform** (e.g., Microsoft Sentinel, Splunk, QRadar) – LVHN selects and manages
+> - **Firewall** (e.g., Palo Alto, Cisco, Fortinet) – LVHN existing infrastructure
+> - **Active Directory** – LVHN existing infrastructure
+> - **DNS/DHCP** – LVHN existing infrastructure
+> - **Network Infrastructure** – LVHN existing infrastructure
+>
+> **Ionic Responsibilities:**
+> - Provide technical requirements and recommendations
+> - Ensure eKVM devices are compatible with standard Windows protocols
+> - Provide implementation guidance and best practices
+> - Support eKVM device configuration within LVHN infrastructure
+>
+> **LVHN Responsibilities:**
+> - Select, procure, and deploy all infrastructure components
+> - Configure and harden jumper server
+> - Manage VPN, firewall, PAM, SIEM
+> - Maintain compliance and security of infrastructure
+> - Operational support and monitoring
+
+---
+
 ## 2. Operating Systems
 
 ### 2.1 Windows Jumper Server
@@ -70,20 +99,42 @@ This document defines the complete Microsoft Windows-based technology stack for 
 
 ### 2.2 eKVM Device OS
 
-**Expected OS:** Windows 10/11 IoT Enterprise or Windows 10/11 Pro
+> **⚠️ CRITICAL: eKVM OS is FIXED and NOT MODIFIABLE**
+>
+> The eKVM device operating system is pre-configured by Ionic and **cannot be changed** by LVHN. All configurations must work with the existing OS.
 
-| Component | Version | Notes |
-|-----------|---------|-------|
-| **OS Edition** | Windows 10 IoT Enterprise LTSC 2021 or Windows 11 IoT Enterprise | Installed by Ionic on eKVM devices |
-| **Alternative** | Windows 10/11 Pro | If IoT not available |
-| **Build** | 19044.x (Win 10) or 22000.x (Win 11) | Latest cumulative updates |
+**Fixed OS Specification (Provided by Ionic):**
+
+| Component | Specification | Notes |
+|-----------|---------------|-------|
+| **OS Edition** | Windows 11 Pro | **FIXED** – Cannot be changed |
+| **Architecture** | 64-bit | x64 processor architecture |
+| **Version** | 24H2 | Latest Windows 11 feature update (October 2024) |
+| **OS Build** | 26100.4202 | Current build as of 2025-11-11 |
 | **Installation Type** | Full Desktop Experience | Required for nCommand Lite GUI |
+| **Update Channel** | General Availability Channel | Receives monthly cumulative updates |
 
-**Required Windows Features:**
-- Remote Desktop (RDP) – enabled during maintenance window only
-- Windows Remote Management (WinRM) – enabled during maintenance window only
-- SMB Client – for file transfer (optional)
-- Windows Defender Antivirus
+**Pre-Installed Windows Features (Cannot Modify):**
+- Remote Desktop (RDP) – **CAN be enabled/disabled via configuration**
+- Windows Remote Management (WinRM) – **CAN be enabled/disabled via configuration**
+- SMB Client – Built-in, available for file transfer
+- Windows Defender Antivirus – Built-in, active by default
+
+**Important Constraints:**
+- ❌ Cannot reinstall or change Windows edition
+- ❌ Cannot downgrade to Windows 10
+- ❌ Cannot switch to IoT Enterprise or LTSC
+- ✅ CAN enable/disable RDP, WinRM during maintenance windows
+- ✅ CAN apply Windows Updates (monthly cumulative updates)
+- ✅ CAN configure security settings (GPO, registry, firewall)
+
+**Compatibility Notes:**
+- Windows 11 Pro includes all features required for this project
+- RDP 10.12+ (native to Windows 11 24H2)
+- WinRM 3.0 (PowerShell 5.1 built-in)
+- SMB 3.1.1 with encryption support
+- TLS 1.3 support (native)
+- FIPS 140-2 validated cryptographic modules
 
 ---
 
@@ -995,20 +1046,47 @@ E:\ (Evidence)        20 GB  (NTFS, BitLocker encrypted)
 
 ---
 
-### 12.2 eKVM Device Hardware (Typical)
+### 12.2 eKVM Device Hardware and Software
 
-**Provided by Ionic (Example Specs):**
+> **⚠️ CRITICAL: eKVM specifications are FIXED and NOT MODIFIABLE by LVHN**
 
-| Component | Typical Specification |
-|-----------|-----------------------|
-| **CPU** | Intel Core i5 or i7 (8th gen+) |
-| **RAM** | 8-16 GB DDR4 |
-| **Storage** | 256-512 GB SSD |
-| **Network** | Dual 1 Gbps NICs (redundancy) |
-| **GPU** | Integrated or discrete (for video processing) |
-| **OS** | Windows 10 IoT Enterprise LTSC 2021 |
+**Provided and Managed by Ionic (Fixed Specifications):**
 
-**Note:** eKVM hardware specs managed by Ionic; jumper server must support standard Windows protocols only.
+| Component | Fixed Specification | Modifiable by LVHN? |
+|-----------|---------------------|---------------------|
+| **CPU** | Intel Core i5 or i7 (8th gen+) | ❌ No (hardware) |
+| **RAM** | 8-16 GB DDR4 | ❌ No (hardware) |
+| **Storage** | 256-512 GB SSD | ❌ No (hardware) |
+| **Network** | Dual 1 Gbps NICs (redundancy) | ❌ No (hardware) |
+| **GPU** | Integrated or discrete (for video processing) | ❌ No (hardware) |
+| **OS Edition** | **Windows 11 Pro** | ❌ No (cannot change edition) |
+| **OS Architecture** | **64-bit (x64)** | ❌ No |
+| **OS Version** | **24H2 (2024 Update)** | ❌ No (cannot downgrade) |
+| **OS Build** | **26100.4202** (as of 2025-11-11) | ⚠️ Updates via Windows Update only |
+| **nCommand Lite** | Ionic proprietary application | ❌ No (managed by Ionic) |
+
+**What LVHN CAN Configure:**
+- ✅ Enable/disable RDP (via registry or GPO)
+- ✅ Enable/disable WinRM (via PowerShell or GPO)
+- ✅ Windows Firewall rules (ports 3389, 5985, 5986, 445)
+- ✅ Apply Windows Updates (monthly cumulative updates)
+- ✅ Configure security settings (NLA, TLS, encryption levels)
+- ✅ Create local user accounts (for maintenance access)
+- ✅ Install Windows Defender definitions (automatic)
+
+**What LVHN CANNOT Do:**
+- ❌ Reinstall or reimage the operating system
+- ❌ Change from Windows 11 Pro to Enterprise/IoT/LTSC
+- ❌ Downgrade to Windows 10
+- ❌ Modify hardware components (CPU, RAM, storage)
+- ❌ Uninstall or modify nCommand Lite application
+- ❌ Change OS architecture (64-bit to 32-bit)
+
+**Important Notes:**
+- eKVM hardware and software managed entirely by Ionic
+- LVHN responsible only for network connectivity and remote access configuration
+- All maintenance procedures must work with existing Windows 11 Pro 24H2 Build 26100.4202
+- Jumper server must support standard Windows protocols compatible with Windows 11
 
 ---
 
@@ -1111,12 +1189,19 @@ Import-GPO -BackupGpoName "MSFT Windows Server 2022 - Computer" -Path "C:\Baseli
 ### 15.2 CIS Benchmarks
 
 **Relevant Benchmarks:**
-- CIS Microsoft Windows Server 2022 Benchmark v1.0.0 (Level 1)
-- CIS Microsoft Windows 10 Enterprise Benchmark v2.0.0 (for eKVM)
+- **CIS Microsoft Windows Server 2022 Benchmark v1.0.0 (Level 1)** – For jumper server
+- **CIS Microsoft Windows 11 Enterprise Benchmark v3.0.0 (Level 1)** – Adapted for eKVM (Windows 11 Pro)
+
+**Note on eKVM CIS Benchmark:**
+- CIS provides benchmarks for Windows 11 Enterprise, not specifically for Pro edition
+- Most Level 1 controls applicable to Windows 11 Pro
+- Some Enterprise-only features (e.g., AppLocker, Credential Guard) may not be available in Pro
+- Apply CIS Windows 11 Enterprise Benchmark with Pro edition limitations documented
 
 **Automated Assessment:**
 - CIS-CAT Pro (automated scanning tool)
 - Microsoft Secure Score (for cloud-connected devices)
+- Manual validation for Pro-specific limitations
 
 ---
 
@@ -1246,6 +1331,8 @@ Get-WindowsUpdate -Hide -KBArticleID KB5001234
 
 **Each technology component must satisfy:**
 
+#### Jumper Server Validation
+
 | Component | Validation Method | Pass Criteria |
 |-----------|-------------------|---------------|
 | **Windows Server 2022** | `winver`, check build number | Build ≥ 20348.x |
@@ -1256,6 +1343,18 @@ Get-WindowsUpdate -Hide -KBArticleID KB5001234
 | **Windows Defender** | `Get-MpComputerStatus` | AntivirusEnabled=True, RealTimeProtectionEnabled=True |
 | **Event Logging** | `Get-WinEvent -LogName Security -MaxEvents 1` | Events present |
 | **SIEM Forwarding** | Query SIEM for jumper server logs | Logs visible within 5 min |
+
+#### eKVM Device Validation
+
+| Component | Validation Method | Pass Criteria |
+|-----------|-------------------|---------------|
+| **Windows 11 Pro** | `winver` | Version 24H2, Build 26100.4202 or later |
+| **OS Edition** | `Get-ComputerInfo \| Select OsName` | Windows 11 Pro (confirm not Home/Enterprise) |
+| **RDP Capability** | `Test-NetConnection -Port 3389` (from jumper) | TcpTestSucceeded=True (when enabled) |
+| **WinRM Capability** | `Test-WSMan -ComputerName ekvm-01` | ProductVersion 3.0+ |
+| **PowerShell 5.1** | `$PSVersionTable` (on eKVM) | PSVersion = 5.1.x (built-in) |
+| **Windows Defender** | `Get-MpComputerStatus` (on eKVM) | AntivirusEnabled=True |
+| **nCommand Lite Running** | Check processes | nCommand Lite process active |
 
 ---
 
