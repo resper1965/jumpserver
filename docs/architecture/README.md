@@ -19,6 +19,7 @@ An Architecture Decision Record (ADR) captures an important architectural decisi
 | [ADR-001](./ADR-001-jumper-server-architecture.md) | Windows Jumper Server Architecture | Accepted | 2025-11-11 |
 | [ADR-002](./ADR-002-no-atera-agent.md) | Remove Atera Agent Dependency | Accepted | 2025-11-11 |
 | [ADR-003](./ADR-003-file-transfer-methods.md) | File Transfer Methods Selection | Accepted | 2025-11-11 |
+| [ADR-004](./ADR-004-rdp-primary-protocol.md) | RDP as Primary Remote Access Protocol | Accepted | 2025-11-11 |
 | [ADR-005](./ADR-005-integrity-verification.md) | SHA-256 Integrity Verification | Accepted | 2025-11-11 |
 
 ## ADR Statuses

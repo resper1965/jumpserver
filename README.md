@@ -102,7 +102,7 @@ jumpserver/
 
 3. **SIEM Integration:**
    - Forward Windows Security, RDP, PowerShell logs
-   - Configure alert rules: [`docs/procedures/MOP-eKVM-Update.md`](docs/procedures/MOP-eKVM-Update.md) § 8.4
+   - Configure alert rules: [`docs/security/Security-Controls-Matrix.md`](docs/security/Security-Controls-Matrix.md)
 
 ### For Security/Compliance Teams (Audit & Review)
 
@@ -383,7 +383,7 @@ All documentation updates, procedure enhancements, and runbook changes should be
 
 ---
 
-**For questions or clarifications, contact the project leads listed in the [Contact & Support](#-contact--support) section.**
+**For questions or clarifications, contact the project leads listed in the [Contact & Support](#contact--support) section.**
 
 ---
 
