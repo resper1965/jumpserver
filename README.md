@@ -131,6 +131,7 @@ jumpserver/
 | [**Project Proposal**](docs/proposal/LVHN-eKVM-Remote-Update-Proposal.md) | Formal project proposal (10-14 pages); business case, scope, architecture, risks | LVHN IT Leadership, Ionic Management |
 | [**Method of Procedure (MOP)**](docs/procedures/MOP-eKVM-Update.md) | Complete execution guide for updates; pre-window, execution, post-window | Operators, LVHN IT Operations |
 | [**Security Controls Matrix**](docs/security/Security-Controls-Matrix.md) | NIST/HIPAA/CIS compliance mapping | Security, Compliance, Auditors |
+| [**Implementation Plan**](docs/planning/Implementation-Plan.md) | Phased roadmap with estimated durations and responsibilities | Project Leadership |
 
 ### Architecture & Design
 
