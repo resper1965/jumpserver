@@ -8,9 +8,11 @@ on:
       - ".github/workflows/generate-docs.yml"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
-    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
