@@ -132,7 +132,7 @@ jumpserver/
 | [**Method of Procedure (MOP)**](docs/procedures/MOP-eKVM-Update.md) | Complete execution guide for updates; pre-window, execution, post-window | Operators, LVHN IT Operations |
 | [**Security Controls Matrix**](docs/security/Security-Controls-Matrix.md) | NIST/HIPAA/CIS compliance mapping | Security, Compliance, Auditors |
 | [**Implementation Plan**](docs/planning/Implementation-Plan.md) | Phased roadmap with estimated durations and responsibilities | Project Leadership |
-| [**Pinexio Portal (Vercel-ready)**](portal/) | Next.js static portal based on the Pinexio template, ready for Vercel deployment | Stakeholder Communications |
+| [**Pinexio Portal (Vercel-ready)**](portal/) | Next.js static portal based on the Pinexio template, featuring the interactive jumper readiness form | Stakeholder Communications |
 
 ### Architecture & Design
 

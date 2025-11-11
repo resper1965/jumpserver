@@ -22,3 +22,7 @@ The site exports statically (`next export`) which makes it compatible with Verce
 
 - Document links rely on the GitHub Pages URL (`https://resper1965.github.io/jumpserver`) for PDF downloads. Ensure the `Generate Documentation PDFs` workflow succeeded before publishing.
 - If you change the base URLs, update `lib/documents.ts` accordingly.
+
+## Interactive Questionnaire
+
+The route `/questionnaire` reproduces the LVHN Jumper Server Readiness Questionnaire as an interactive form. Submitting the form downloads a JSON file with the responses so the customer can email it back securely. Update the destination email inside `app/questionnaire/page.tsx` if the point of contact changes.
