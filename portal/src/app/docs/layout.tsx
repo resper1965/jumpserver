@@ -23,6 +23,8 @@ import Header from '@/components/header';
 import { ModeToggle } from '@/components/mode-toggle';
 import { Button } from '@/components/button';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { SearchDialog } from '@/components/search-dialog';
+import { LogoutButton } from '@/components/logout-button';
 
 export default function DocsLayout({
   children,
@@ -56,6 +58,9 @@ export default function DocsLayout({
           </SidebarHeader>
 
           <SidebarContent>
+            <div className="mb-4">
+              <SearchDialog />
+            </div>
             {sidebarNav.map((section) => (
               <SidebarMenuItem
                 isCollapsable={section.pages && section.pages.length > 0}
@@ -100,6 +105,7 @@ export default function DocsLayout({
               <Button onClick={() => window.open('https://github.com/resper1965/jumpserver', '_blank')}>
                 <Github className="h-[1.2rem] w-[1.2rem] transition-all" />
               </Button>
+              <LogoutButton />
             </div>
           </Header>
           <main className="overflow-auto p-6">{children}</main>
