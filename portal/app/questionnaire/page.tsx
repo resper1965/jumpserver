@@ -121,7 +121,7 @@ const sections: SectionConfig[] = [
   }
 ];
 
-const EMAIL_TO = 'ionic.project.manager@ionic.health';
+const EMAIL_TO = 'raraujo@ionic.health';
 
 export default function QuestionnaireFormPage() {
   const [status, setStatus] = useState<SubmitState>('idle');
