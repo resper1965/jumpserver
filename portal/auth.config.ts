@@ -44,7 +44,7 @@ export const defaultUsers: User[] = [
     email: 'resper@ionic.health',
     // Password: ionic2025
     passwordHash: '$2a$10$rQ3nI8B1pqYO9ZrLyK9lHyM5aXvJ/7RAQZ9A4k4Zy1DrK9Lh0Ml5b',
-    name: 'Roberto Esper',
+    name: 'Ricardo Esper',
     role: 'admin',
     createdAt: new Date().toISOString(),
   },
@@ -65,6 +65,16 @@ export const defaultUsers: User[] = [
     // Password: lvhn2025
     passwordHash: '$2a$10$vQ0mH7Z9oqXN8YqKxJ8kGxL4zXuJ/6QZQY8Z3j3Yx0CqJ8Kg9XL4z',
     name: 'LVHN IT Team',
+    role: 'viewer',
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: 'user-004',
+    username: 'akielbasa',
+    email: '212063065@gehealthcare.com',
+    // Password: ge2025
+    passwordHash: '$2a$10$Y/bq74tpFGdzr7BRsQ.Aaum3HxP6.9ZLMeO3HAjlzJg.6TwNpkuhi',
+    name: 'Andrew Kielbasa',
     role: 'viewer',
     createdAt: new Date().toISOString(),
   },
