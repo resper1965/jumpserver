@@ -31,6 +31,7 @@ jobs:
             ["docs/proposal/LVHN-eKVM-Remote-Update-Proposal.md"]="LVHN-eKVM-Remote-Update-Proposal.pdf"
             ["docs/proposal/LVHN-Infrastructure-Questionnaire.md"]="LVHN-Infrastructure-Questionnaire.pdf"
             ["docs/solution/Functional-Solution-Design.md"]="Functional-Solution-Design.pdf"
+            ["docs/planning/Implementation-Plan.md"]="Implementation-Plan.pdf"
             ["docs/procedures/User-Manual.md"]="User-Manual.pdf"
             ["docs/procedures/MOP-eKVM-Update.md"]="MOP-eKVM-Update.pdf"
             ["docs/security/Security-Controls-Matrix.md"]="Security-Controls-Matrix.pdf"

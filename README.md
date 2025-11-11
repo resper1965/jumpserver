@@ -132,6 +132,7 @@ jumpserver/
 | [**Method of Procedure (MOP)**](docs/procedures/MOP-eKVM-Update.md) | Complete execution guide for updates; pre-window, execution, post-window | Operators, LVHN IT Operations |
 | [**Security Controls Matrix**](docs/security/Security-Controls-Matrix.md) | NIST/HIPAA/CIS compliance mapping | Security, Compliance, Auditors |
 | [**Implementation Plan**](docs/planning/Implementation-Plan.md) | Phased roadmap with estimated durations and responsibilities | Project Leadership |
+| [**Pinexio Portal (Vercel-ready)**](portal/) | Next.js static portal based on the Pinexio template, ready for Vercel deployment | Stakeholder Communications |
 
 ### Architecture & Design
 
@@ -397,3 +398,7 @@ A GitHub Pages site can be enabled to share the complete documentation set with 
 3. The portal (`docs/index.md`) lists every document with direct links and PDF downloads.
 4. PDFs are rebuilt automatically by the `Generate Documentation PDFs` workflow on every push to `main` or via manual dispatch.
 5. LVHN can download the questionnaire, complete it offline, and return responses by email or an agreed secure channel.
+
+### Hosting on Vercel
+
+The `portal/` directory already follows the [Pinexio template](https://pinexio.vercel.app/docs/getting-started/installation). Create a Vercel project pointing to that folder, set the build command to `pnpm run build`, and output directory to `out`. Enable password protection or SSO within Vercel if access control is required.
