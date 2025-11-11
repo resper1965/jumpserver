@@ -54,7 +54,7 @@ export const defaultUsers: User[] = [
     email: 'raraujo@ionic.health',
     // Password: ionic2025
     passwordHash: '$2a$10$sT4oJ9C2qrZP0AsMyL0mIzN6bYwK/8SBRAA0B5l5Az2EsL0Mi1Nm6c',
-    name: 'Ricardo Araujo',
+    name: 'Rafael Araujo',
     role: 'admin',
     createdAt: new Date().toISOString(),
   },
