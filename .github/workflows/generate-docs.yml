@@ -1,0 +1,50 @@
+name: Generate Documentation PDFs
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "**.md"
+      - ".github/workflows/generate-docs.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install pandoc and LaTeX engine
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc texlive-latex-extra
+
+      - name: Generate PDFs
+        run: |
+          set -e
+          mkdir -p docs/pdfs
+          declare -A files=(
+            ["docs/proposal/LVHN-eKVM-Remote-Update-Proposal.md"]="LVHN-eKVM-Remote-Update-Proposal.pdf"
+            ["docs/proposal/LVHN-Infrastructure-Questionnaire.md"]="LVHN-Infrastructure-Questionnaire.pdf"
+            ["docs/solution/Functional-Solution-Design.md"]="Functional-Solution-Design.pdf"
+            ["docs/procedures/User-Manual.md"]="User-Manual.pdf"
+            ["docs/procedures/MOP-eKVM-Update.md"]="MOP-eKVM-Update.pdf"
+            ["docs/security/Security-Controls-Matrix.md"]="Security-Controls-Matrix.pdf"
+            ["docs/compliance/Audit-Readiness-Checklist.md"]="Audit-Readiness-Checklist.pdf"
+            ["specs/Technology-Stack-Specification.md"]="Technology-Stack-Specification.pdf"
+            ["runbooks/RDP-Hardening-Guide.md"]="RDP-Hardening-Guide.pdf"
+            ["runbooks/WinRM-Setup-and-File-Transfer.md"]="WinRM-Setup-and-File-Transfer.pdf"
+          )
+          for src in "${!files[@]}"; do
+            dest="docs/pdfs/${files[$src]}"
+            pandoc "$src" -o "$dest" --pdf-engine=xelatex
+          done
+
+      - name: Commit generated PDFs
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "chore: update generated PDFs [skip ci]"
+          add: "docs/pdfs/*.pdf"
+          default_author: github_actions

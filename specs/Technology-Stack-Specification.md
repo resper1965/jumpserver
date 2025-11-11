@@ -9,23 +9,8 @@
 
 ---
 
-## Table of Contents
-
-1. [Executive Summary](#1-executive-summary)
-2. [Operating Systems](#2-operating-systems)
-3. [Remote Access Technologies](#3-remote-access-technologies)
-4. [File Transfer Technologies](#4-file-transfer-technologies)
-5. [Security Technologies](#5-security-technologies)
-6. [Authentication & Identity](#6-authentication--identity)
-7. [Monitoring & Logging](#7-monitoring--logging)
-8. [Automation & Scripting](#8-automation--scripting)
-9. [Network Infrastructure](#9-network-infrastructure)
-10. [Development & DevOps Tools](#10-development--devops-tools)
-11. [Licensing & Cost Model](#11-licensing--cost-model)
-12. [System Requirements](#12-system-requirements)
-13. [Technology Roadmap](#13-technology-roadmap)
-
----
+> **Configuration Custody Notice**  
+> Ionic Health engineering exclusively manages all eKVM configuration, firmware, and software changes, including patching operations executed via the jumper server. LVHN operations is solely responsible for provisioning, hardening, and maintaining the Windows jumper server in line with the requirements defined in this specification. Any cross-domain action demands documented approval from both organizations.
 
 ## 1. Executive Summary
 

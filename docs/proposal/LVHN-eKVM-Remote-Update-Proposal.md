@@ -10,6 +10,9 @@
 
 ---
 
+> **Configuration Custody Notice**  
+> Ionic Health engineering exclusively manages all eKVM configuration, firmware, and software changes. LVHN operations is solely responsible for provisioning, hardening, and maintaining the Windows jumper server environment. Any activity outside these custody boundaries requires written approval from both teams.
+
 ## Table of Contents
 
 1. [Executive Summary](#1-executive-summary)

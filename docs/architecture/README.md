@@ -2,6 +2,9 @@
 
 This directory contains Architecture Decision Records for the LVHN eKVM Remote Update project.
 
+> **Configuration Custody Notice**  
+> Ionic Health engineering exclusively manages all eKVM configuration, firmware, and software changes. LVHN operations is solely responsible for provisioning, hardening, and maintaining the Windows jumper server environment. Any activity outside these custody boundaries requires written approval from both teams.
+
 ## What is an ADR?
 
 An Architecture Decision Record (ADR) captures an important architectural decision made along with its context and consequences.
@@ -13,10 +16,7 @@ An Architecture Decision Record (ADR) captures an important architectural decisi
 | [ADR-001](./ADR-001-jumper-server-architecture.md) | Windows Jumper Server Architecture | Accepted | 2025-11-11 |
 | [ADR-002](./ADR-002-no-atera-agent.md) | Remove Atera Agent Dependency | Accepted | 2025-11-11 |
 | [ADR-003](./ADR-003-file-transfer-methods.md) | File Transfer Methods Selection | Accepted | 2025-11-11 |
-| [ADR-004](./ADR-004-rdp-primary-protocol.md) | RDP as Primary Management Protocol | Accepted | 2025-11-11 |
 | [ADR-005](./ADR-005-integrity-verification.md) | SHA-256 Integrity Verification | Accepted | 2025-11-11 |
-| [ADR-006](./ADR-006-time-boxed-access.md) | Time-Boxed JIT Access Model | Accepted | 2025-11-11 |
-| [ADR-007](./ADR-007-logging-audit-strategy.md) | Comprehensive Logging and Audit Strategy | Accepted | 2025-11-11 |
 
 ## ADR Statuses
 

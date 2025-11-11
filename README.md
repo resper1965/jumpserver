@@ -6,6 +6,9 @@
 
 ---
 
+> **CRITICAL OWNERSHIP NOTICE**  
+> Ionic Health engineering exclusively manages all eKVM configuration, firmware, and software changes. LVHN operations is solely responsible for provisioning, hardening, and maintaining the Windows jumper server environment. Any cross-domain activity requires written change approval from both parties.
+
 ## 📋 Project Overview
 
 This repository contains the complete technical documentation, procedures, and architecture decisions for implementing secure remote updates of Ionic eKVM devices within the Lehigh Valley Health Network (LVHN) environment.
@@ -26,34 +29,35 @@ This repository contains the complete technical documentation, procedures, and a
 jumpserver/
 ├── README.md                          # This file
 ├── docs/                              # Core documentation
-│   ├── proposal/                      # Project proposal and business case
-│   │   └── LVHN-eKVM-Remote-Update-Proposal.md  (10-14 pages, formal)
-│   ├── architecture/                  # Architecture Decision Records (ADRs)
-│   │   ├── README.md                  # ADR index
-│   │   ├── ADR-TEMPLATE.md            # Template for new ADRs
+│   ├── proposal/
+│   │   ├── LVHN-eKVM-Remote-Update-Proposal.md
+│   │   └── LVHN-Infrastructure-Questionnaire.md
+│   ├── architecture/
+│   │   ├── README.md
+│   │   ├── ADR-TEMPLATE.md
 │   │   ├── ADR-001-jumper-server-architecture.md
 │   │   ├── ADR-002-no-atera-agent.md
 │   │   ├── ADR-003-file-transfer-methods.md
 │   │   └── ADR-005-integrity-verification.md
-│   ├── procedures/                    # Operational procedures
-│   │   └── MOP-eKVM-Update.md         # Method of Procedure (full execution guide)
-│   ├── security/                      # Security documentation
-│   │   └── Security-Controls-Matrix.md  # NIST/CIS/HIPAA controls mapping
-│   ├── compliance/                    # Compliance and audit
-│   │   └── Audit-Readiness-Checklist.md  # Pre-audit validation
-│   └── diagrams/                      # Architecture diagrams
-├── runbooks/                          # Step-by-step technical guides
-│   ├── WinRM-Setup-and-File-Transfer.md
+│   ├── compliance/
+│   │   └── Audit-Readiness-Checklist.md
+│   ├── procedures/
+│   │   ├── MOP-eKVM-Update.md
+│   │   └── User-Manual.md
+│   ├── security/
+│   │   └── Security-Controls-Matrix.md
+│   └── solution/
+│       └── Functional-Solution-Design.md
+├── runbooks/
 │   ├── RDP-Hardening-Guide.md
-│   └── SMB-File-Transfer.md (planned)
-├── specs/                             # Technical specifications
-├── logs/                              # Log samples and evidence templates
-├── .github/                           # GitHub templates
-│   ├── ISSUE_TEMPLATE/
-│   │   ├── bug_report.md
-│   │   └── feature_request.md
-│   └── pull_request_template.md
-└── CHANGELOG.md (planned)
+│   └── WinRM-Setup-and-File-Transfer.md
+├── specs/
+│   └── Technology-Stack-Specification.md
+└── .github/
+    ├── ISSUE_TEMPLATE/
+    │   ├── bug_report.md
+    │   └── feature_request.md
+    └── pull_request_template.md
 ```
 
 ---
@@ -379,3 +383,13 @@ All documentation updates, procedure enhancements, and runbook changes should be
 ---
 
 *Last updated: 2025-11-11*
+
+## 🌐 Client Documentation Portal
+
+A GitHub Pages site can be enabled to share the complete documentation set with LVHN:
+
+1. In GitHub, open *Settings → Pages* and select the `main` branch with `/docs` folder.
+2. Share the generated URL (e.g., `https://<org>.github.io/jumpserver/`) with the client.
+3. The portal (`docs/index.md`) lists every document with direct links and PDF downloads.
+4. PDFs are rebuilt automatically by the `Generate Documentation PDFs` workflow on every push to `main` or via manual dispatch.
+5. LVHN can download the questionnaire, complete it offline, and return responses by email or an agreed secure channel.

@@ -10,6 +10,9 @@
 
 ---
 
+> **Configuration Custody Notice**  
+> Ionic Health engineering exclusively manages all eKVM configuration, firmware, and software changes. LVHN operations is solely responsible for provisioning, hardening, and maintaining the Windows jumper server environment. Any activity outside these custody boundaries requires written approval from both teams.
+
 ## Context and Problem Statement
 
 Update binaries (firmware, drivers, application packages) must be transferred securely from Ionic to the jumper server, and then from the jumper server to eKVM devices. Methods must support integrity verification, audit logging, and work within LVHN network security policies. File sizes range from 50 MB (drivers) to 500 MB (full firmware images).
